@@ -14,8 +14,8 @@
     "eslint": "eslint --ext .js src/ test/",
     "stylelint": "stylelint --aei src/**/*.css",
     "pretest": "npm run htmlhint && npm run eslint && npm run stylelint",
-    "test": "jest --coverage",
-    "start": "serve src/"
+    "test": "jest --co-sverage",
+    "start": "serve  src/"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
