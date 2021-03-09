@@ -1,30 +1,33 @@
 //pagina de bienvenida
-export function perfil(){
-    return `<div>
-    <header></header>
-    <div><button class=boton id="publicar">creat post</button>
-    <textarea id="entrada" name="publicar"  rows="10" cols="40">Escribe aquí lo que quieras publicar</textarea>
-    <footer><a href="https://en.bikebike.org/" class="pag">bike.bike.org</a></footer>
+export function perfil(container){
+    const html = `<div>
+    <div><h2 id=frase>¿cómo la estas pasando?</h2>
+    <textarea id="entrada" name="publicar" placeholder="Vamas publica" rows="5" cols="35"></textarea>
+    <button class=boton id="guardar">creat post</button>
+    <textarea id="salida" name="publicar" cols="35"></textarea>
     </div>`
+
+    container.innerHTML = html
+
 }
 
-export const setMessageStorage = () => {
-    let btnPublicar = document.getElementById("publicar");
+ const setMessageStorage = () => {
+    let btnPublicar = document.getElementById("guardar");
 
     btnPublicar.addEventListener("click",()=>{
         let message = document.getElementById('entrada').value; 
         setMessage(message);
-    });
+    
+    }); 
 };
 
 const setMessage = (message) => {
-  localStorage.setItem('userMessage', message);
-  console.log(localStorage.getItem('userMessage'));
+    localStorage.setItem('userMessage', message);
+    console.log(localStorage.getItem('userMessage'));
+
+    let pintar = document.getElementById('salida');
+    pintar.innerHTML = message;
+
 };
 
-// Cada una de las siguientes
-// instrucciones actualiza la página
-//window.history.go(0);
-//window.history.go();
-
-//location.reload(true); para recargar la pagina por la fuerza
+    
