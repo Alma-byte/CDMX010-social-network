@@ -9,14 +9,15 @@ export function perfil(container){
 
     container.innerHTML = html
 
+
     const btnPublicar = document.getElementById("guardar");
-    btnPublicar.addEventListener("click",()=>{
+    btnPublicar.addEventListener("click",(event)=>{
+        event.preventDefault();
         let message = document.getElementById('entrada').value; 
         setMessage(message);
     
-    }); 
-
-}
+    })
+};
 
 const setMessage = (message) => {
     localStorage.setItem('userMessage', message);
@@ -25,6 +26,6 @@ const setMessage = (message) => {
     let pintar = document.getElementById('salida');
     pintar.innerHTML = message;
 
-};
+}
 
     
