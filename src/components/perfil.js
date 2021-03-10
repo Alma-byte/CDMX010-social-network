@@ -1,5 +1,8 @@
+//
+import {setHtml} from './post.js';
+
 //pagina de bienvenida
-export function perfil(container){
+export const perfil = (container) => { 
     const html = `<div>
     <div><h2 id=frase>¿cómo la estas pasando?</h2>
     <textarea id="entrada" name="publicar" placeholder="Vamas publica" rows="5" cols="35"></textarea>
@@ -8,24 +11,33 @@ export function perfil(container){
     </div>`
 
     container.innerHTML = html
-
+    let postureoList = JSON.parse(localStorage.getItem("posteo"));
+    if (postureoList=null){
+       postureoList=[]
+     postureoList.forEach(element => {
+        container.innerHTML += setHtml(element)
+     });  
+   
 
     const btnPublicar = document.getElementById("guardar");
     btnPublicar.addEventListener("click",(event)=>{
         event.preventDefault();
-        let message = document.getElementById('entrada').value; 
-        setMessage(message);
-    
+        let newMessage = document.getElementById('entrada').value; 
+        setMessage(newMessage);
+        setMessages();
     })
 };
 
-const setMessage = (message) => {
-    localStorage.setItem('userMessage', message);
-    console.log(localStorage.getItem('userMessage'));
-
-    let pintar = document.getElementById('salida');
-    pintar.innerHTML = message;
-
+const setMessage = (post) => {
+    let item = {
+        post: post,
+    }
+    postureoList.push(item);
+    return item;
 }
+const setMessages = () => {
+    localStorage.setItem('posteo',JSON.stringify(postureoList));
+}}
+
 
     
